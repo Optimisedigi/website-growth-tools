@@ -72,37 +72,50 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Clear all existing keywords for a fresh start
       await storage.clearAllKeywords();
       
-      // Fetch real SERP data for each keyword
+      // Fetch SERP positions + real search volumes in batch
       const keywordsToCreate = [];
-      for (const keyword of keywordList) {
-        try {
-          console.log(`Searching for "${keyword}" targeting ${website}`);
-          const serpData = await serpService.searchKeyword(keyword, website, location);
-          
+      try {
+        console.log(`Batch searching ${keywordList.length} keywords for ${website}`);
+        const serpResults = await serpService.searchKeywords(keywordList, website, location);
+
+        for (const result of serpResults) {
           keywordsToCreate.push({
             projectId: project!.id,
-            keyword,
-            position: serpData.position,
+            keyword: result.keyword,
+            position: result.position,
             previousPosition: null,
-            searchVolume: serpData.searchVolume,
-            opportunity: serpData.opportunity,
+            searchVolume: result.searchVolume,
+            opportunity: result.opportunity,
             location: location,
           });
-          
-          // Small delay to be respectful to the API
-          await new Promise(resolve => setTimeout(resolve, 100));
-        } catch (error) {
-          console.error(`Error searching for keyword "${keyword}":`, error);
-          // Fallback to mock data for this keyword
-          keywordsToCreate.push({
-            projectId: project!.id,
-            keyword,
-            position: generateRandomPosition(),
-            previousPosition: null,
-            searchVolume: generateRandomSearchVolume(),
-            opportunity: generateOpportunityLevel(),
-            location: location,
-          });
+        }
+      } catch (error) {
+        console.error('Batch keyword search failed, falling back to individual searches:', error);
+        for (const keyword of keywordList) {
+          try {
+            const serpData = await serpService.searchKeyword(keyword, website, location);
+            keywordsToCreate.push({
+              projectId: project!.id,
+              keyword,
+              position: serpData.position,
+              previousPosition: null,
+              searchVolume: serpData.searchVolume,
+              opportunity: serpData.opportunity,
+              location: location,
+            });
+            await new Promise(resolve => setTimeout(resolve, 100));
+          } catch (err) {
+            console.error(`Error searching for keyword "${keyword}":`, err);
+            keywordsToCreate.push({
+              projectId: project!.id,
+              keyword,
+              position: generateRandomPosition(),
+              previousPosition: null,
+              searchVolume: generateRandomSearchVolume(),
+              opportunity: generateOpportunityLevel(),
+              location: location,
+            });
+          }
         }
       }
       

@@ -1,3 +1,5 @@
+import { googleAdsService } from './google-ads-service';
+
 interface SerperResult {
   position: number;
   title: string;
@@ -26,13 +28,87 @@ export class SerpService {
     }
   }
 
+  /**
+   * Fetch SERP positions for multiple keywords and batch-fetch search volumes
+   * from Google Ads Keyword Planner in a single API call.
+   */
+  async searchKeywords(keywords: string[], targetDomain: string, location: string = 'us'): Promise<Array<{
+    keyword: string;
+    position: number | null;
+    searchVolume: number;
+    opportunity: string;
+  }>> {
+    // Batch-fetch real search volumes from Google Ads (or empty map on failure)
+    let volumeMap = new Map<string, number>();
+    if (googleAdsService.isConfigured()) {
+      try {
+        volumeMap = await googleAdsService.getSearchVolumes(keywords);
+      } catch (error) {
+        console.error('[SERP] Google Ads search volume fetch failed, falling back to heuristic:', error);
+      }
+    }
+
+    const results: Array<{
+      keyword: string;
+      position: number | null;
+      searchVolume: number;
+      opportunity: string;
+    }> = [];
+
+    for (const keyword of keywords) {
+      const serpResult = await this.searchKeywordPosition(keyword, targetDomain, location);
+      const searchVolume = volumeMap.get(keyword.toLowerCase()) ?? this.estimateSearchVolume(keyword);
+      const opportunity = this.calculateOpportunityWithVolume(serpResult.position, searchVolume);
+
+      results.push({
+        keyword,
+        position: serpResult.position,
+        searchVolume,
+        opportunity,
+      });
+
+      // Small delay to be respectful to the Serper API
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+
+    return results;
+  }
+
   async searchKeyword(keyword: string, targetDomain: string, location: string = 'us'): Promise<{
     position: number | null;
     searchVolume: number;
     opportunity: string;
   }> {
+    // For single-keyword calls, try to get real volume from Google Ads
+    let searchVolume: number | null = null;
+    if (googleAdsService.isConfigured()) {
+      try {
+        const volumeMap = await googleAdsService.getSearchVolumes([keyword]);
+        searchVolume = volumeMap.get(keyword.toLowerCase()) ?? null;
+      } catch (error) {
+        console.error('[SERP] Google Ads search volume fetch failed:', error);
+      }
+    }
+
+    const result = await this.searchKeywordPosition(keyword, targetDomain, location);
+    const volume = searchVolume ?? this.estimateSearchVolume(keyword);
+
+    return {
+      position: result.position,
+      searchVolume: volume,
+      opportunity: this.calculateOpportunityWithVolume(result.position, volume),
+    };
+  }
+
+  /**
+   * Fetch SERP position only (no search volume logic).
+   */
+  private async searchKeywordPosition(keyword: string, targetDomain: string, location: string): Promise<{
+    position: number | null;
+  }> {
     if (!this.apiKey) {
-      return this.getMockData();
+      const mock = this.getMockData();
+      return { position: mock.position };
     }
 
     try {
@@ -60,16 +136,11 @@ export class SerpService {
 
       // Find the target domain in the results
       const position = this.findDomainPosition(data.organic || [], targetDomain);
-      
-      return {
-        position,
-        searchVolume: this.estimateSearchVolume(keyword),
-        opportunity: this.calculateOpportunity(position, keyword),
-      };
+
+      return { position };
     } catch (error) {
       console.error('SERP API error:', error);
-      // Fallback to mock data on error
-      return this.getMockData();
+      return { position: null };
     }
   }
 
@@ -216,14 +287,12 @@ export class SerpService {
     }
   }
 
-  private calculateOpportunity(position: number | null, keyword: string): string {
-    const searchVolume = this.estimateSearchVolume(keyword);
-    
+  private calculateOpportunityWithVolume(position: number | null, searchVolume: number): string {
     if (!position) {
       // Not ranking - high opportunity if good search volume
       return searchVolume > 5000 ? 'critical' : searchVolume > 1000 ? 'high' : 'medium';
     }
-    
+
     if (position > 50) {
       return searchVolume > 2000 ? 'high' : 'medium';
     } else if (position > 20) {

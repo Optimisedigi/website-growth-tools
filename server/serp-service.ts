@@ -74,20 +74,16 @@ export class SerpService {
   private findDomainPosition(results: SerperResult[], targetDomain: string): number | null {
     // Clean the target domain (remove protocol and www)
     const cleanTarget = this.cleanDomain(targetDomain);
-    
+
     for (let i = 0; i < results.length; i++) {
-      const resultUrl = results[i].link.toLowerCase();
-      const targetUrl = targetDomain.toLowerCase();
-      
-      // Extract full domain from both URLs for comparison
-      const resultDomain = this.cleanDomain(resultUrl);
-      
-      // Check if the result is from the target domain (including subdomains and paths)
-      if (resultUrl.includes(cleanTarget) || resultDomain === cleanTarget) {
-        return i + 1; // Position is 1-indexed
+      const resultDomain = this.cleanDomain(results[i].link);
+
+      // Exact domain match or subdomain match (e.g. blog.example.com matches example.com)
+      if (resultDomain === cleanTarget || resultDomain.endsWith(`.${cleanTarget}`)) {
+        return results[i].position || (i + 1); // Use Serper's position field, fallback to index
       }
     }
-    
+
     return null; // Not found in top 100
   }
 

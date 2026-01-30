@@ -55,9 +55,11 @@ export class SerpService {
       }
 
       const data: SerperResponse = await response.json();
-      
+
+      console.log(`[SERP] Query: "${keyword}", Location: ${location}, Target: "${targetDomain}", Results: ${data.organic?.length || 0}`);
+
       // Find the target domain in the results
-      const position = this.findDomainPosition(data.organic, targetDomain);
+      const position = this.findDomainPosition(data.organic || [], targetDomain);
       
       return {
         position,
@@ -74,15 +76,23 @@ export class SerpService {
   private findDomainPosition(results: SerperResult[], targetDomain: string): number | null {
     // Clean the target domain (remove protocol and www)
     const cleanTarget = this.cleanDomain(targetDomain);
+    console.log(`[SERP] Looking for domain: "${cleanTarget}" in ${results.length} results`);
 
     for (let i = 0; i < results.length; i++) {
       const resultDomain = this.cleanDomain(results[i].link);
 
       // Exact domain match or subdomain match (e.g. blog.example.com matches example.com)
       if (resultDomain === cleanTarget || resultDomain.endsWith(`.${cleanTarget}`)) {
-        return results[i].position || (i + 1); // Use Serper's position field, fallback to index
+        console.log(`[SERP] MATCH at index ${i}: "${resultDomain}" -> "${results[i].link}" (serper position: ${results[i].position})`);
+        return results[i].position || (i + 1);
       }
     }
+
+    // Log top 10 results for debugging
+    console.log(`[SERP] No match found. Top 10 results:`);
+    results.slice(0, 10).forEach((r, i) => {
+      console.log(`  ${i + 1}. ${this.cleanDomain(r.link)} -> ${r.link} (pos: ${r.position})`);
+    });
 
     return null; // Not found in top 100
   }

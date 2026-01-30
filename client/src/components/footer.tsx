@@ -53,8 +53,8 @@ export default function Footer() {
             <p className="font-semibold text-slate-900 mb-4">Free tools</p>
             <ul className="space-y-3">
               <li><a href={`${SITE}/digital-marketing-growth-hub`} className="text-slate-600 hover:text-slate-900 transition-colors">Growth hub</a></li>
-              <li><a href="/free-simple-keyword-tracker" className="text-slate-600 hover:text-slate-900 transition-colors">AI keyword tracker</a></li>
-              <li><a href="/website-conversion-rate-audit" className="text-slate-600 hover:text-slate-900 transition-colors">AI conversion audit</a></li>
+              <li><a href="/ai-growth-tools/free-simple-keyword-tracker" className="text-slate-600 hover:text-slate-900 transition-colors">AI keyword tracker</a></li>
+              <li><a href="/ai-growth-tools/website-conversion-rate-audit" className="text-slate-600 hover:text-slate-900 transition-colors">AI conversion audit</a></li>
             </ul>
           </div>
 

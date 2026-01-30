@@ -12,7 +12,7 @@ import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest, queryClient } from "@/lib/queryClient";
+import { apiRequest, queryClient, API_BASE } from "@/lib/queryClient";
 import { trackKeywordsSchema, type TrackKeywordsRequest } from "@shared/schema";
 import { Upload, Download, RefreshCw, Bell } from "lucide-react";
 
@@ -136,7 +136,7 @@ export default function TrackingForm({ onSuccess }: TrackingFormProps) {
   const handleExport = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("/api/export", {
+      const response = await fetch(`${API_BASE}/api/export`, {
         credentials: "include",
       });
       

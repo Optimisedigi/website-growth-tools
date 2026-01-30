@@ -13,8 +13,8 @@ const services = [
 ];
 
 const tools = [
-  { name: "Free keyword rank tracker", href: "/free-simple-keyword-tracker", description: "Track your SEO rankings" },
-  { name: "Free website conversion rate audit", href: "/website-conversion-rate-audit", description: "Audit your conversion rate" },
+  { name: "Free keyword rank tracker", href: "/ai-growth-tools/free-simple-keyword-tracker", description: "Track your SEO rankings" },
+  { name: "Free website conversion rate audit", href: "/ai-growth-tools/website-conversion-rate-audit", description: "Audit your conversion rate" },
 ];
 
 function getServiceIcon(index: number) {

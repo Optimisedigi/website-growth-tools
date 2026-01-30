@@ -1,4 +1,5 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { API_BASE } from "@/lib/queryClient";
 import { useEffect, useState } from "react";
 import Header from "@/components/header";
 import TrackingForm from "@/components/tracking-form";
@@ -89,7 +90,7 @@ export default function Keywords() {
 
   const deleteMutation = useMutation({
     mutationFn: async (keywordIds: number[]) => {
-      const response = await fetch("/api/keywords/delete", {
+      const response = await fetch(`${API_BASE}/api/keywords/delete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

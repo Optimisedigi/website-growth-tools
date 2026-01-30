@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, Router as WouterRouter } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -56,7 +56,7 @@ function ToolsLanding() {
                 Track your website's Google search rankings for any keyword. Monitor positions across different locations and get insights on ranking opportunities.
               </p>
               <a
-                href="/free-simple-keyword-tracker"
+                href="/ai-growth-tools/free-simple-keyword-tracker"
                 className="block w-full text-white bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg transition-colors text-center font-medium"
               >
                 Launch tool
@@ -72,7 +72,7 @@ function ToolsLanding() {
                 Instantly audit your landing page and get a CRO score based on best practice conversion rate optimisation. No sign-up needed — just enter your URL and goal to get started.
               </p>
               <a
-                href="/website-conversion-rate-audit"
+                href="/ai-growth-tools/website-conversion-rate-audit"
                 className="block w-full text-white bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg transition-colors text-center font-medium"
               >
                 Launch tool
@@ -87,11 +87,10 @@ function ToolsLanding() {
   );
 }
 
-function Router() {
+function Routes() {
   return (
     <Switch>
       <Route path="/" component={ToolsLanding} />
-      <Route path="/ai-growth-tools" component={ToolsLanding} />
       <Route path="/free-simple-keyword-tracker" component={Dashboard} />
       <Route path="/website-conversion-rate-audit" component={CROAuditPage} />
       <Route component={NotFound} />
@@ -104,7 +103,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
-        <Router />
+        <WouterRouter base="/ai-growth-tools">
+          <Routes />
+        </WouterRouter>
       </TooltipProvider>
     </QueryClientProvider>
   );

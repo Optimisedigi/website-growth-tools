@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { API_BASE } from "@/lib/queryClient";
 import { useEffect } from "react";
 import Header from "@/components/header";
 import MetricsDashboard from "@/components/metrics-dashboard";
@@ -23,7 +24,7 @@ export default function Reports() {
 
   const handleExport = async () => {
     try {
-      const response = await fetch("/api/export", {
+      const response = await fetch(`${API_BASE}/api/export`, {
         credentials: "include",
       });
       

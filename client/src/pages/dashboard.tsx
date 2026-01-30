@@ -13,7 +13,7 @@ import { Download, BarChart3, RefreshCw, Camera } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { getOpportunityClass } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import { apiRequest, queryClient } from "@/lib/queryClient";
+import { apiRequest, queryClient, API_BASE } from "@/lib/queryClient";
 import type { DashboardMetrics, KeywordWithProject } from "@shared/schema";
 
 export default function Dashboard() {
@@ -145,7 +145,7 @@ export default function Dashboard() {
 
   const handleExport = async () => {
     try {
-      const response = await fetch("/api/export", {
+      const response = await fetch(`${API_BASE}/api/export`, {
         credentials: "include",
       });
       

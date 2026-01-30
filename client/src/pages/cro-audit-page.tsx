@@ -7,6 +7,7 @@ import LoadingState from "@/components/loading-state";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { AuditRequest, AuditResults as AuditResultsType } from "@shared/schema";
+import { API_BASE } from "@/lib/queryClient";
 
 export default function CROAuditPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +20,7 @@ export default function CROAuditPage() {
     setAuditResults(null);
 
     try {
-      const response = await fetch('/api/audits', {
+      const response = await fetch(`${API_BASE}/api/audits`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

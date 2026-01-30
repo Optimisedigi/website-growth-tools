@@ -73,9 +73,17 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-slate-200">
-          <p className="text-slate-600 text-sm">
-            &copy; {new Date().getFullYear()} Optimise Digital. All rights reserved.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-slate-600 text-sm">
+              &copy; {new Date().getFullYear()} Optimise Digital. All rights reserved.
+            </p>
+            <a
+              href={`${SITE}/sitemap`}
+              className="text-slate-600 hover:text-slate-700 transition-colors text-sm"
+            >
+              Sitemap
+            </a>
+          </div>
         </div>
       </div>
     </footer>

@@ -91,12 +91,38 @@ The application will be available at `http://localhost:5000`
 | GET | `/api/opportunities` | Get optimization opportunities |
 | GET | `/api/ranking-distribution` | Get ranking distribution data |
 
+## APIs and Integrations
+
+### Serper API (Required for Live SERP Data)
+
+The keyword ranking tracker uses the [Serper API](https://serper.dev/) to fetch real Google search results and determine your website's ranking positions.
+
+**Setup:**
+1. Sign up for a Serper API account at [serper.dev](https://serper.dev/)
+2. Get your API key from the dashboard
+3. Add the API key to your environment variables
+
+Without the API key, the app will use mock data for demonstration purposes.
+
+**Features powered by Serper API:**
+- Real-time Google SERP position tracking
+- Support for 100+ search results per query
+- Geo-location targeting (country and city level)
+- Multiple language support
+
+### GitHub Integration (Optional)
+
+For Replit deployments, the GitHub connector is pre-configured for repository management. This enables:
+- Automatic code pushing to GitHub
+- Repository creation and management
+
 ## Environment Variables
 
-| Variable | Description |
-|----------|-------------|
-| `DATABASE_URL` | PostgreSQL connection string (optional) |
-| `NODE_ENV` | Environment mode (development/production) |
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `SERPER_API_KEY` | Serper.dev API key for live SERP data | Yes (for live data) |
+| `DATABASE_URL` | PostgreSQL connection string | No (uses in-memory storage) |
+| `NODE_ENV` | Environment mode (development/production) | No |
 
 ## Contributing
 

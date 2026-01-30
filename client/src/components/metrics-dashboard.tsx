@@ -25,32 +25,32 @@ export default function MetricsDashboard({ metrics, loading }: MetricsDashboardP
 
   const metricCards = [
     {
-      title: "Total Keywords",
+      title: "Total keywords",
       value: metrics?.totalKeywords || 0,
       icon: Search,
       iconBg: "bg-blue-100",
       iconColor: "text-blue-600",
     },
     {
-      title: "Top 10 Rankings",
+      title: "Top 10 rankings",
       value: metrics?.top10 || 0,
       icon: Trophy,
-      iconBg: "bg-green-100",
-      iconColor: "text-green-600",
+      iconBg: "bg-blue-100",
+      iconColor: "text-blue-600",
     },
     {
-      title: "Avg. Position",
+      title: "Avg. position",
       value: metrics?.avgPosition || 0,
       icon: TrendingUp,
-      iconBg: "bg-yellow-100",
-      iconColor: "text-yellow-600",
+      iconBg: "bg-blue-100",
+      iconColor: "text-blue-600",
     },
     {
       title: "Opportunities",
       value: metrics?.opportunities || 0,
       icon: Lightbulb,
-      iconBg: "bg-purple-100",
-      iconColor: "text-purple-600",
+      iconBg: "bg-blue-100",
+      iconColor: "text-blue-600",
     },
   ];
 

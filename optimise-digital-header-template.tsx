@@ -69,7 +69,7 @@ export default function OptimiseDigitalHeader({
   const defaultGrowthTools = [
     { 
       label: "The FREE Simple Keyword Tracker", 
-      href: "https://tool.optimisedigital.online/free-simple-keyword-tracker",
+      href: "https://www.optimisedigital.online/ai-growth-tools/free-simple-keyword-tracker",
       isHighlighted: true 
     }
   ];

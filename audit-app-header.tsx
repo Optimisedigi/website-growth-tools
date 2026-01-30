@@ -182,7 +182,7 @@ export default function Header() {
               onMouseEnter={() => setActiveDropdown('growth-tools')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <a href="https://tool.optimisedigital.online/" className="flex items-center space-x-1 text-gray-700 hover:text-gray-900 font-medium whitespace-nowrap py-2 text-sm">
+              <a href="https://www.optimisedigital.online/ai-growth-tools/" className="flex items-center space-x-1 text-gray-700 hover:text-gray-900 font-medium whitespace-nowrap py-2 text-sm">
                 <span>Growth Tools</span>
                 <ChevronDown className="h-4 w-4" />
               </a>
@@ -190,10 +190,10 @@ export default function Header() {
                 <div className="absolute top-full left-0 pt-1 w-[20rem] z-50">
                   <div className="bg-black border border-gray-200 rounded-md shadow-lg">
                     <div className="py-1">
-                      <a href="https://tool.optimisedigital.online/free-simple-keyword-tracker" className="block px-4 py-1.5 text-sm text-white hover:bg-gray-800 font-semibold">
+                      <a href="https://www.optimisedigital.online/ai-growth-tools/free-simple-keyword-tracker" className="block px-4 py-1.5 text-sm text-white hover:bg-gray-800 font-semibold">
                         FREE Simple Keyword Tracker
                       </a>
-                      <a href="https://tool.optimisedigital.online/website-conversion-rate-audit" className="block px-4 py-1.5 text-sm text-white hover:bg-gray-800 font-semibold">
+                      <a href="https://www.optimisedigital.online/ai-growth-tools/website-conversion-rate-audit" className="block px-4 py-1.5 text-sm text-white hover:bg-gray-800 font-semibold">
                         FREE Website Conversion Rate Audit
                       </a>
                     </div>
@@ -300,12 +300,12 @@ export default function Header() {
 
               {/* Growth Tools Mobile */}
               <div className="block px-3 py-2">
-                <a href="https://tool.optimisedigital.online/" className="text-gray-700 font-medium mb-2 block hover:text-gray-900">Growth Tools</a>
+                <a href="https://www.optimisedigital.online/ai-growth-tools/" className="text-gray-700 font-medium mb-2 block hover:text-gray-900">Growth Tools</a>
                 <div className="pl-4 space-y-1">
-                  <a href="https://tool.optimisedigital.online/free-simple-keyword-tracker" className="block py-1 text-sm text-gray-600 hover:text-gray-900 font-semibold">
+                  <a href="https://www.optimisedigital.online/ai-growth-tools/free-simple-keyword-tracker" className="block py-1 text-sm text-gray-600 hover:text-gray-900 font-semibold">
                     FREE Simple Keyword Tracker
                   </a>
-                  <a href="https://tool.optimisedigital.online/website-conversion-rate-audit" className="block py-1 text-sm text-gray-600 hover:text-gray-900 font-semibold">
+                  <a href="https://www.optimisedigital.online/ai-growth-tools/website-conversion-rate-audit" className="block py-1 text-sm text-gray-600 hover:text-gray-900 font-semibold">
                     FREE Website Conversion Rate Audit
                   </a>
                 </div>

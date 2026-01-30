@@ -54,25 +54,25 @@ export default function RankingVisualization() {
       label: "Top 10",
       count: distribution.top10,
       percentage: Math.round((distribution.top10 / totalKeywords) * 100),
-      color: "bg-green-500",
+      color: "bg-blue-600",
     },
     {
       label: "Top 20",
       count: distribution.top20,
       percentage: Math.round((distribution.top20 / totalKeywords) * 100),
-      color: "bg-blue-500",
+      color: "bg-blue-400",
     },
     {
       label: "Top 50",
       count: distribution.top50,
       percentage: Math.round((distribution.top50 / totalKeywords) * 100),
-      color: "bg-yellow-500",
+      color: "bg-blue-300",
     },
     {
       label: "Not in Top 100",
       count: distribution.notFound,
       percentage: Math.round((distribution.notFound / totalKeywords) * 100),
-      color: "bg-red-500",
+      color: "bg-slate-300",
     },
   ] : [];
 

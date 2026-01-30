@@ -21,6 +21,17 @@ interface TrackingFormProps {
 }
 
 const locations = [
+  // Australian capitals first
+  { value: "au", label: "🇦🇺 Australia", searchText: "australia" },
+  { value: "au:sydney", label: "🎭 Sydney, NSW", searchText: "sydney new south wales australia" },
+  { value: "au:melbourne", label: "☕ Melbourne, VIC", searchText: "melbourne victoria australia" },
+  { value: "au:brisbane", label: "🌞 Brisbane, QLD", searchText: "brisbane queensland australia" },
+  { value: "au:perth", label: "🦘 Perth, WA", searchText: "perth western australia" },
+  { value: "au:adelaide", label: "🍷 Adelaide, SA", searchText: "adelaide south australia" },
+  { value: "au:canberra", label: "🏛️ Canberra, ACT", searchText: "canberra act australian capital territory" },
+  { value: "au:hobart", label: "🏔️ Hobart, TAS", searchText: "hobart tasmania australia" },
+  { value: "au:darwin", label: "🐊 Darwin, NT", searchText: "darwin northern territory australia" },
+  // US
   { value: "us", label: "🇺🇸 United States", searchText: "united states usa america" },
   { value: "us:new-york", label: "🗽 New York, NY", searchText: "new york nyc manhattan brooklyn queens bronx staten island" },
   { value: "us:los-angeles", label: "🌴 Los Angeles, CA", searchText: "los angeles la california hollywood beverly hills" },
@@ -30,33 +41,35 @@ const locations = [
   { value: "us:atlanta", label: "🍑 Atlanta, GA", searchText: "atlanta georgia" },
   { value: "us:seattle", label: "☕ Seattle, WA", searchText: "seattle washington emerald city" },
   { value: "us:denver", label: "⛰️ Denver, CO", searchText: "denver colorado mile high city" },
+  // Canada
   { value: "ca", label: "🇨🇦 Canada", searchText: "canada" },
   { value: "ca:toronto", label: "🍁 Toronto, ON", searchText: "toronto ontario canada" },
   { value: "ca:vancouver", label: "🌲 Vancouver, BC", searchText: "vancouver british columbia canada" },
   { value: "ca:montreal", label: "🏛️ Montreal, QC", searchText: "montreal quebec canada" },
+  // UK
   { value: "gb", label: "🇬🇧 United Kingdom", searchText: "united kingdom uk britain england" },
   { value: "gb:london", label: "🏰 London", searchText: "london england uk britain" },
   { value: "gb:manchester", label: "⚽ Manchester", searchText: "manchester england uk" },
   { value: "gb:birmingham", label: "🏭 Birmingham", searchText: "birmingham england uk" },
-  { value: "au", label: "🇦🇺 Australia", searchText: "australia" },
-  { value: "au:sydney", label: "🎭 Sydney, NSW", searchText: "sydney new south wales australia" },
-  { value: "au:melbourne", label: "☕ Melbourne, VIC", searchText: "melbourne victoria australia" },
-  { value: "au:brisbane", label: "🌞 Brisbane, QLD", searchText: "brisbane queensland australia" },
-  { value: "au:perth", label: "🦘 Perth, WA", searchText: "perth western australia" },
+  // Germany
   { value: "de", label: "🇩🇪 Germany", searchText: "germany deutschland" },
   { value: "de:berlin", label: "🐻 Berlin", searchText: "berlin germany" },
   { value: "de:munich", label: "🍺 Munich", searchText: "munich munchen germany bavaria" },
   { value: "de:hamburg", label: "⚓ Hamburg", searchText: "hamburg germany" },
+  // France
   { value: "fr", label: "🇫🇷 France", searchText: "france" },
   { value: "fr:paris", label: "🗼 Paris", searchText: "paris france" },
   { value: "fr:lyon", label: "🍷 Lyon", searchText: "lyon france" },
   { value: "fr:marseille", label: "🌊 Marseille", searchText: "marseille france" },
+  // Spain
   { value: "es", label: "🇪🇸 Spain", searchText: "spain espana" },
   { value: "es:madrid", label: "👑 Madrid", searchText: "madrid spain" },
   { value: "es:barcelona", label: "⚽ Barcelona", searchText: "barcelona spain catalonia" },
+  // Italy
   { value: "it", label: "🇮🇹 Italy", searchText: "italy italia" },
   { value: "it:rome", label: "🏛️ Rome", searchText: "rome roma italy" },
   { value: "it:milan", label: "👗 Milan", searchText: "milan milano italy" },
+  // Others
   { value: "nl", label: "🇳🇱 Netherlands", searchText: "netherlands holland" },
   { value: "nl:amsterdam", label: "🚲 Amsterdam", searchText: "amsterdam netherlands holland" },
   { value: "br", label: "🇧🇷 Brazil", searchText: "brazil brasil" },
@@ -74,6 +87,9 @@ const locations = [
   { value: "kr", label: "🇰🇷 South Korea", searchText: "south korea korea" },
   { value: "kr:seoul", label: "🏙️ Seoul", searchText: "seoul south korea" },
   { value: "sg", label: "🇸🇬 Singapore", searchText: "singapore" },
+  { value: "nz", label: "🇳🇿 New Zealand", searchText: "new zealand" },
+  { value: "nz:auckland", label: "⛵ Auckland", searchText: "auckland new zealand" },
+  { value: "nz:wellington", label: "🌬️ Wellington", searchText: "wellington new zealand" },
 ];
 
 export default function TrackingForm({ onSuccess }: TrackingFormProps) {
@@ -86,7 +102,7 @@ export default function TrackingForm({ onSuccess }: TrackingFormProps) {
     defaultValues: {
       website: "",
       keywords: "",
-      location: "us:new-york",
+      location: "au:sydney",
     },
   });
 
@@ -199,7 +215,7 @@ export default function TrackingForm({ onSuccess }: TrackingFormProps) {
       <Card className="border border-gray-200 shadow-sm">
         <CardHeader>
           <CardTitle className="text-lg font-semibold text-gray-900">
-            Track New Keywords
+            Track new keywords
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -215,7 +231,7 @@ export default function TrackingForm({ onSuccess }: TrackingFormProps) {
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="example.com or www.example.com"
+                        placeholder="example.com"
                         className="focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
                         {...field}
                       />

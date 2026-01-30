@@ -42,7 +42,7 @@ export default function Dashboard() {
       canonical.rel = 'canonical';
       document.head.appendChild(canonical);
     }
-    canonical.href = 'https://tool.optimisedigital.online/free-simple-keyword-tracker';
+    canonical.href = 'https://www.optimisedigital.online/ai-growth-tools/free-simple-keyword-tracker';
     
     // Add FAQ Schema
     const faqSchema = {
@@ -169,12 +169,34 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
       
+      {/* Breadcrumb */}
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+        <nav aria-label="Breadcrumb" className="pt-4 pb-3">
+          <ol className="flex items-center flex-wrap gap-1.5 text-sm text-slate-500">
+            <li>
+              <a href="https://www.optimisedigital.online" className="hover:text-slate-900 transition-colors">Home</a>
+            </li>
+            <li className="text-slate-400">/</li>
+            <li>
+              <a href="/ai-growth-tools" className="hover:text-slate-900 transition-colors">Free AI growth tools</a>
+            </li>
+            <li className="text-slate-400">/</li>
+            <li className="text-slate-700 font-medium">Keyword rank tracker</li>
+          </ol>
+        </nav>
+      </div>
+
       <div className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-6">
           <h1 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
-            Free Keyword Rank Tracker
+            Free keyword rank tracker
           </h1>
           <p className="text-gray-600">A lightweight keyword tracker to monitor your rankings — nothing fancy, just simple and useful</p>
+          <span className="inline-block mt-3 border border-blue-200 rounded-md bg-blue-50 px-3 py-2">
+            <span className="text-xs text-blue-700">
+              Rankings show text search and popular product results only (excludes sponsored listings, google shopping ads and AI overviews)
+            </span>
+          </span>
         </div>
 
         {/* Mobile: Track New Keywords first */}
@@ -192,12 +214,19 @@ export default function Dashboard() {
           <div className="lg:col-span-1 space-y-6">
             <TrackingForm onSuccess={refetchKeywords} />
             
+            {/* One-off tracking note */}
+            <div className="bg-blue-50 border border-blue-200 rounded-lg px-4 py-3">
+              <p className="text-sm text-blue-800">
+                Keyword tracking is <span className="font-semibold">one-off</span> — create a snapshot to label your results and export them as a CSV report to keep a record.
+              </p>
+            </div>
+
             {/* Desktop Snapshot Box */}
             <Card className="border border-gray-200 shadow-sm">
               <CardHeader>
                 <CardTitle className="text-lg font-semibold text-gray-900 flex items-center">
                   <Camera className="h-5 w-5 mr-2 text-blue-600" />
-                  Create Snapshot
+                  Create snapshot
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -222,20 +251,20 @@ export default function Dashboard() {
               </CardContent>
             </Card>
 
-            {/* Desktop Export Data Box */}
+            {/* Desktop Export data Box */}
             <Card className="border border-gray-200 shadow-sm">
               <CardHeader>
                 <CardTitle className="text-lg font-semibold text-gray-900">
-                  Export Data
+                  Export data
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-gray-600 mb-4">
                   Download your keyword rankings and performance data as a CSV file for further analysis.
                 </p>
-                <Button onClick={handleExport} className="w-full">
+                <Button onClick={handleExport} className="w-full bg-slate-800 hover:bg-slate-900 text-white">
                   <Download className="h-4 w-4 mr-2" />
-                  Download CSV Report
+                  Download CSV report
                 </Button>
               </CardContent>
             </Card>
@@ -248,13 +277,13 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Mobile: Performance Summary before results table */}
+        {/* Mobile: Performance summary before results table */}
         <div className="lg:hidden mb-8">
           <Card className="border border-gray-200 shadow-sm">
             <CardHeader>
               <CardTitle className="text-lg font-semibold text-gray-900 flex items-center">
                 <BarChart3 className="h-5 w-5 mr-2 text-blue-600" />
-                Performance Summary
+                Performance summary
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -285,13 +314,22 @@ export default function Dashboard() {
           <ResultsTable keywords={keywords} loading={keywordsLoading} onRefresh={refetchKeywords} />
         </div>
 
+        {/* Mobile: One-off tracking note */}
+        <div className="lg:hidden mb-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg px-4 py-3">
+            <p className="text-sm text-blue-800">
+              Keyword tracking is <span className="font-semibold">one-off</span> — create a snapshot to label your results and export them as a CSV report to keep a record.
+            </p>
+          </div>
+        </div>
+
         {/* Mobile: Snapshot Box under results table */}
         <div className="lg:hidden mb-8">
           <Card className="border border-gray-200 shadow-sm">
             <CardHeader>
               <CardTitle className="text-lg font-semibold text-gray-900 flex items-center">
                 <Camera className="h-5 w-5 mr-2 text-blue-600" />
-                Create Snapshot
+                Create snapshot
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -317,21 +355,21 @@ export default function Dashboard() {
           </Card>
         </div>
 
-        {/* Mobile: Export Data Box */}
+        {/* Mobile: Export data Box */}
         <div className="lg:hidden">
           <Card className="border border-gray-200 shadow-sm">
             <CardHeader>
               <CardTitle className="text-lg font-semibold text-gray-900">
-                Export Data
+                Export data
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-gray-600 mb-4">
                 Download your keyword rankings and performance data as a CSV file for further analysis.
               </p>
-              <Button onClick={handleExport} className="w-full">
+              <Button onClick={handleExport} className="w-full bg-slate-800 hover:bg-slate-900 text-white">
                 <Download className="h-4 w-4 mr-2" />
-                Download CSV Report
+                Download CSV report
               </Button>
             </CardContent>
           </Card>
@@ -339,13 +377,13 @@ export default function Dashboard() {
 
 
 
-        {/* Desktop Performance Summary */}
+        {/* Desktop Performance summary */}
         <div className="hidden lg:grid lg:grid-cols-2 gap-8">
           <Card className="border border-gray-200 shadow-sm">
             <CardHeader>
               <CardTitle className="text-lg font-semibold text-gray-900 flex items-center">
                 <BarChart3 className="h-5 w-5 mr-2 text-blue-600" />
-                Ranking Distribution
+                Ranking distribution
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -356,7 +394,7 @@ export default function Dashboard() {
           <Card className="border border-gray-200 shadow-sm">
             <CardHeader>
               <CardTitle className="text-lg font-semibold text-gray-900">
-                Keyword Opportunities
+                Keyword opportunities
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -400,70 +438,78 @@ export default function Dashboard() {
           </Card>
         </div>
 
-        {/* FAQ Section */}
-        <div className="mt-16 mb-8">
-          <Card className="border border-gray-200 shadow-sm">
-            <CardHeader>
-              <CardTitle className="text-2xl font-bold text-gray-900 text-center">
-                Frequently Asked Questions
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="space-y-4">
-                <details className="group border-b border-gray-200 pb-4">
-                  <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-gray-900 hover:text-blue-600">
-                    What is a keyword tracker tool?
-                    <span className="ml-2 transform group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-3 text-gray-600 leading-relaxed">
-                    A keyword tracker shows where your website ranks in search engine results for specific keywords. It's essential for monitoring SEO performance over time.
-                  </p>
-                </details>
-
-                <details className="group border-b border-gray-200 pb-4">
-                  <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-gray-900 hover:text-blue-600">
-                    How do I track keyword rankings for free?
-                    <span className="ml-2 transform group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-3 text-gray-600 leading-relaxed">
-                    You can use our free keyword tracker by entering your URL, target keywords, and location. It will show your current ranking, search volume, and opportunity score.
-                  </p>
-                </details>
-
-                <details className="group border-b border-gray-200 pb-4">
-                  <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-gray-900 hover:text-blue-600">
-                    Why is keyword tracking important for SEO?
-                    <span className="ml-2 transform group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-3 text-gray-600 leading-relaxed">
-                    Tracking helps you understand which keywords are performing well and which need improvement. It's a key part of any long-term SEO strategy.
-                  </p>
-                </details>
-
-                <details className="group border-b border-gray-200 pb-4">
-                  <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-gray-900 hover:text-blue-600">
-                    Does this keyword tracker support location-based rankings?
-                    <span className="ml-2 transform group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-3 text-gray-600 leading-relaxed">
-                    Yes, our tool allows you to select a specific location so you can monitor rankings in your target market — perfect for local SEO.
-                  </p>
-                </details>
-
-                <details className="group">
-                  <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-gray-900 hover:text-blue-600">
-                    How often should I check my keyword rankings?
-                    <span className="ml-2 transform group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-3 text-gray-600 leading-relaxed">
-                    Weekly or bi-weekly checks are ideal for spotting trends without overreacting to small fluctuations. Use the tracker regularly to monitor progress.
-                  </p>
-                </details>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </div>
+
+      {/* FAQ Section */}
+      <section className="py-16 bg-slate-800">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-white text-center mb-10">
+            Frequently asked questions
+          </h2>
+          <div className="space-y-4">
+            <details className="group border-b border-slate-600 pb-4">
+              <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-white hover:text-blue-400 transition-colors">
+                What is a keyword tracker tool?
+                <svg className="w-4 h-4 ml-2 flex-shrink-0 transform group-open:rotate-180 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <p className="mt-3 text-slate-300 leading-relaxed">
+                A keyword tracker shows where your website ranks in search engine results for specific keywords. It's essential for monitoring SEO performance over time.
+              </p>
+            </details>
+
+            <details className="group border-b border-slate-600 pb-4">
+              <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-white hover:text-blue-400 transition-colors">
+                How do I track keyword rankings for free?
+                <svg className="w-4 h-4 ml-2 flex-shrink-0 transform group-open:rotate-180 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <p className="mt-3 text-slate-300 leading-relaxed">
+                You can use our free keyword tracker by entering your URL, target keywords, and location. It will show your current ranking, search volume, and opportunity score.
+              </p>
+            </details>
+
+            <details className="group border-b border-slate-600 pb-4">
+              <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-white hover:text-blue-400 transition-colors">
+                Why is keyword tracking important for SEO?
+                <svg className="w-4 h-4 ml-2 flex-shrink-0 transform group-open:rotate-180 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <p className="mt-3 text-slate-300 leading-relaxed">
+                Tracking helps you understand which keywords are performing well and which need improvement. It's a key part of any long-term SEO strategy.
+              </p>
+            </details>
+
+            <details className="group border-b border-slate-600 pb-4">
+              <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-white hover:text-blue-400 transition-colors">
+                Does this keyword tracker support location-based rankings?
+                <svg className="w-4 h-4 ml-2 flex-shrink-0 transform group-open:rotate-180 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <p className="mt-3 text-slate-300 leading-relaxed">
+                Yes, our tool allows you to select a specific location so you can monitor rankings in your target market — perfect for local SEO.
+              </p>
+            </details>
+
+            <details className="group">
+              <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-white hover:text-blue-400 transition-colors">
+                How often should I check my keyword rankings?
+                <svg className="w-4 h-4 ml-2 flex-shrink-0 transform group-open:rotate-180 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <p className="mt-3 text-slate-300 leading-relaxed">
+                Weekly or bi-weekly checks are ideal for spotting trends without overreacting to small fluctuations. Use the tracker regularly to monitor progress.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

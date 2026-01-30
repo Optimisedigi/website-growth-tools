@@ -359,19 +359,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://tool.optimisedigital.online/</loc>
+    <loc>https://www.optimisedigital.online/ai-growth-tools/</loc>
     <lastmod>2025-07-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://tool.optimisedigital.online/free-simple-keyword-tracker</loc>
+    <loc>https://www.optimisedigital.online/ai-growth-tools/free-simple-keyword-tracker</loc>
     <lastmod>2025-07-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://tool.optimisedigital.online/website-conversion-rate-audit</loc>
+    <loc>https://www.optimisedigital.online/ai-growth-tools/website-conversion-rate-audit</loc>
     <lastmod>2025-07-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -387,7 +387,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const robots = `User-agent: *
 Allow: /
 
-Sitemap: https://tool.optimisedigital.online/sitemap.xml`;
+Sitemap: https://www.optimisedigital.online/ai-growth-tools/sitemap.xml`;
     
     res.setHeader('Content-Type', 'text/plain');
     res.send(robots);

@@ -33,9 +33,14 @@ const getLocationDisplay = (location: string): string => {
     "ca:vancouver": "🏔️ Vancouver",
     "ca:montreal": "🎭 Montreal",
     "au": "🇦🇺 Australia",
-    "au:sydney": "🏄 Sydney",
+    "au:sydney": "🎭 Sydney",
     "au:melbourne": "☕ Melbourne",
-    "au:brisbane": "🦘 Brisbane",
+    "au:brisbane": "🌞 Brisbane",
+    "au:perth": "🦘 Perth",
+    "au:adelaide": "🍷 Adelaide",
+    "au:canberra": "🏛️ Canberra",
+    "au:hobart": "🏔️ Hobart",
+    "au:darwin": "🐊 Darwin",
     "de": "🇩🇪 Germany",
     "de:berlin": "🍺 Berlin",
     "de:munich": "🍻 Munich",
@@ -158,7 +163,7 @@ export default function ResultsTable({ keywords = [], loading, onRefresh }: Resu
       <Card className="border border-gray-200 shadow-sm">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle>Ranking Results</CardTitle>
+            <CardTitle>Ranking results</CardTitle>
             <div className="flex items-center space-x-3">
               <Skeleton className="h-10 w-32" />
               <Skeleton className="h-10 w-10" />
@@ -177,13 +182,33 @@ export default function ResultsTable({ keywords = [], loading, onRefresh }: Resu
     );
   }
 
+  // Check if we're showing pre-seeded mock/demo data
+  const isDemoData = keywords && keywords.length > 0 && keywords.some(k =>
+    k.keyword === "seo tools" || k.keyword === "keyword tracking" || k.project?.website?.includes("example")
+  );
+
   return (
     <Card className="border border-gray-200 shadow-sm">
+      {isDemoData && (
+        <div className="px-4 pt-4">
+          <div className="flex items-center gap-3 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 -rotate-[0.5deg]">
+            {/* Hand-drawn curved arrow pointing left */}
+            <svg width="48" height="32" viewBox="0 0 48 32" fill="none" className="text-amber-500 flex-shrink-0 hidden lg:block">
+              <path d="M46 20C38 16 26 13 18 13C12 13 7 14.5 4 17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+              <path d="M0 17L14 7L11 22Z" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
+            </svg>
+            <div>
+              <p className="text-sm font-semibold text-amber-900">This is just demo data</p>
+              <p className="text-sm text-amber-700">Add your website, keywords and location to get your real one-off results</p>
+            </div>
+          </div>
+        </div>
+      )}
       <CardHeader className="border-b border-gray-200">
         <div className="flex items-center justify-between">
           <div>
             <CardTitle className="text-lg font-semibold text-gray-900">
-              Ranking Results
+              Ranking results
             </CardTitle>
           </div>
           <div className="flex items-center space-x-3">
@@ -214,12 +239,6 @@ export default function ResultsTable({ keywords = [], loading, onRefresh }: Resu
             </Select>
           </div>
         </div>
-        <p className="text-xs text-gray-500 mt-3 lg:hidden">
-          Rankings show text search and popular product results only (excludes sponsored listings, google shopping ads and AI overviews)
-        </p>
-        <p className="text-xs text-gray-500 mt-3 hidden lg:block">
-          Rankings show text search and popular product results only (excludes sponsored listings, google shopping ads and AI overviews)
-        </p>
         {keywords.length > 0 && (
           <p className="text-sm text-gray-500 mt-6 border border-gray-200 px-3 py-2 rounded-md bg-gray-50">
             Tracking: <span className="font-medium">{keywords[0].project.website}</span>
@@ -282,66 +301,88 @@ export default function ResultsTable({ keywords = [], loading, onRefresh }: Resu
               </TableRow>
             </TableHeader>
             <TableBody>
-              {sortedKeywords.map((keyword) => {
-                const positionChange = getPositionChange(keyword.position, keyword.previousPosition);
-                return (
-                  <TableRow key={keyword.id} className="hover:bg-gray-50">
-                    <TableCell>
-                      <div className="text-sm font-medium text-gray-900">
-                        {keyword.keyword}
-                      </div>
-                    </TableCell>
+              {sortedKeywords.length > 0 ? (
+                sortedKeywords.map((keyword) => {
+                  const positionChange = getPositionChange(keyword.position, keyword.previousPosition);
+                  return (
+                    <TableRow key={keyword.id} className="hover:bg-gray-50">
+                      <TableCell>
+                        <div className="text-sm font-medium text-gray-900">
+                          {keyword.keyword}
+                        </div>
+                      </TableCell>
 
-                    <TableCell>
-                      <Badge 
-                        variant="secondary" 
-                        className={getPositionBadgeClass(keyword.position)}
-                      >
-                        {getPositionDisplay(keyword.position)}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="text-sm text-gray-500 hidden sm:table-cell">
-                      {keyword.searchVolume.toLocaleString()}
-                    </TableCell>
-                    <TableCell className="text-sm text-gray-500 hidden lg:table-cell">
-                      {keyword.location ? getLocationDisplay(keyword.location) : "Global"}
-                    </TableCell>
-                    <TableCell className="text-sm text-gray-500 hidden xl:table-cell">
-                      {keyword.lastUpdated ? formatRelativeTime(new Date(keyword.lastUpdated)) : "Never"}
-                    </TableCell>
-                    <TableCell>
-                      <Badge 
-                        variant="secondary" 
-                        className={getOpportunityClass(keyword.opportunity)}
-                      >
-                        {keyword.opportunity.charAt(0).toUpperCase() + keyword.opportunity.slice(1)}
-                      </Badge>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
+                      <TableCell>
+                        <Badge
+                          variant="secondary"
+                          className={getPositionBadgeClass(keyword.position)}
+                        >
+                          {getPositionDisplay(keyword.position)}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-sm text-gray-500 hidden sm:table-cell">
+                        {keyword.searchVolume.toLocaleString()}
+                      </TableCell>
+                      <TableCell className="text-sm text-gray-500 hidden lg:table-cell">
+                        {keyword.location ? getLocationDisplay(keyword.location) : "Global"}
+                      </TableCell>
+                      <TableCell className="text-sm text-gray-500 hidden xl:table-cell">
+                        {keyword.lastUpdated ? formatRelativeTime(new Date(keyword.lastUpdated)) : "Never"}
+                      </TableCell>
+                      <TableCell>
+                        <Badge
+                          variant="secondary"
+                          className={getOpportunityClass(keyword.opportunity)}
+                        >
+                          {keyword.opportunity.charAt(0).toUpperCase() + keyword.opportunity.slice(1)}
+                        </Badge>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={6}>
+                    <div className="py-12 text-center">
+                      <div className="inline-flex items-center gap-3 bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 -rotate-1">
+                        {/* Hand-drawn arrow pointing left */}
+                        <svg width="48" height="32" viewBox="0 0 48 32" fill="none" className="text-amber-500 flex-shrink-0 hidden lg:block">
+                          <path d="M46 20C38 16 26 13 18 13C12 13 7 14.5 4 17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                          <path d="M0 17L14 7L11 22Z" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
+                        </svg>
+                        <div>
+                          <p className="text-base font-semibold text-amber-900">No keywords tracked yet</p>
+                          <p className="text-sm text-amber-700 mt-0.5">Add your website, keywords, and location to get your one-off results</p>
+                        </div>
+                      </div>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </div>
 
-        <div className="px-6 py-3 bg-gray-50 border-t border-gray-200">
-          <div className="flex items-center justify-between">
-            <div className="text-sm text-gray-500">
-              Showing 1 to {sortedKeywords.length} of {sortedKeywords.length} results
-            </div>
-            <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="sm" disabled>
-                Previous
-              </Button>
-              <Button variant="default" size="sm" className="bg-primary text-white">
-                1
-              </Button>
-              <Button variant="ghost" size="sm" disabled>
-                Next
-              </Button>
+        {sortedKeywords.length > 0 && (
+          <div className="px-6 py-3 bg-gray-50 border-t border-gray-200">
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-gray-500">
+                Showing 1 to {sortedKeywords.length} of {sortedKeywords.length} results
+              </div>
+              <div className="flex items-center space-x-2">
+                <Button variant="ghost" size="sm" disabled>
+                  Previous
+                </Button>
+                <Button variant="default" size="sm" className="bg-primary text-white">
+                  1
+                </Button>
+                <Button variant="ghost" size="sm" disabled>
+                  Next
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </CardContent>
     </Card>
   );

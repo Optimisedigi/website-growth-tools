@@ -78,7 +78,7 @@ export default function AuditResults({ results, onNewAudit }: AuditResultsProps)
               {results.overallScore}/10
             </div>
             <CardTitle className="text-3xl mt-4">
-              Conversion Audit Results
+              Conversion audit results
             </CardTitle>
             <CardDescription className="text-lg">
               {results.overallScore >= 8 
@@ -95,10 +95,10 @@ export default function AuditResults({ results, onNewAudit }: AuditResultsProps)
       {/* Score Breakdown */}
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: "Above-Fold Content", score: results.aboveFoldScore, icon: Eye },
+          { label: "Above-fold content", score: results.aboveFoldScore, icon: Eye },
           { label: "Call-to-Actions", score: results.ctaScore, icon: Target },
           { label: "Navigation", score: results.navigationScore, icon: Navigation },
-          { label: "Content Structure", score: results.contentScore, icon: FileText },
+          { label: "Content structure", score: results.contentScore, icon: FileText },
         ].map((item, index) => {
           const IconComponent = getScoreIcon(item.score);
           return (
@@ -117,12 +117,12 @@ export default function AuditResults({ results, onNewAudit }: AuditResultsProps)
         })}
       </div>
 
-      {/* Key Findings */}
+      {/* Key findings */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <AlertTriangle className="h-5 w-5" />
-            Key Findings
+            Key findings
           </CardTitle>
           <CardDescription>
             Critical areas identified during the audit
@@ -156,7 +156,7 @@ export default function AuditResults({ results, onNewAudit }: AuditResultsProps)
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <TrendingUp className="h-5 w-5" />
-            Priority Recommendations
+            Priority recommendations
           </CardTitle>
           <CardDescription>
             Actionable steps to improve your conversion rate
@@ -192,7 +192,7 @@ export default function AuditResults({ results, onNewAudit }: AuditResultsProps)
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <FileText className="h-5 w-5" />
-              Content Analysis
+              Content analysis
             </CardTitle>
             <CardDescription>
               Key elements found on your website
@@ -201,7 +201,7 @@ export default function AuditResults({ results, onNewAudit }: AuditResultsProps)
           <CardContent className="space-y-6">
             {results.extractedContent.headline && (
               <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Main Headline</h4>
+                <h4 className="font-semibold text-gray-900 mb-2">Main headline</h4>
                 <p className="text-lg text-gray-700 p-3 bg-gray-50 rounded">
                   "{results.extractedContent.headline}"
                 </p>
@@ -223,7 +223,7 @@ export default function AuditResults({ results, onNewAudit }: AuditResultsProps)
 
             {results.extractedContent.ctaTexts && results.extractedContent.ctaTexts.length > 0 && (
               <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Call-to-Actions Found</h4>
+                <h4 className="font-semibold text-gray-900 mb-2">Call-to-actions found</h4>
                 <div className="flex flex-wrap gap-2">
                   {results.extractedContent.ctaTexts.slice(0, 6).map((cta, index) => (
                     <Badge key={index} variant="outline" className="text-sm">
@@ -236,7 +236,7 @@ export default function AuditResults({ results, onNewAudit }: AuditResultsProps)
 
             {results.extractedContent.navigationItems && results.extractedContent.navigationItems.length > 0 && (
               <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Navigation Menu</h4>
+                <h4 className="font-semibold text-gray-900 mb-2">Navigation menu</h4>
                 <div className="flex flex-wrap gap-2">
                   {results.extractedContent.navigationItems.map((item, index) => (
                     <Badge key={index} variant="secondary" className="text-sm">
@@ -255,18 +255,18 @@ export default function AuditResults({ results, onNewAudit }: AuditResultsProps)
         <CardContent className="pt-6">
           <div className="text-center">
             <h3 className="text-xl font-bold text-gray-900 mb-2">
-              Ready to Boost Your Conversions?
+              Ready to boost your conversions?
             </h3>
             <p className="text-gray-600 mb-4">
               Implement these recommendations and you could see significant improvements in your conversion rate.
             </p>
             <div className="flex justify-center gap-4">
               <Button onClick={onNewAudit} variant="outline">
-                Audit Another Website
+                Audit another website
               </Button>
               <Button asChild>
                 <a href="https://www.optimisedigital.online/" target="_blank" rel="noopener noreferrer">
-                  Get Professional Help
+                  Get professional help
                 </a>
               </Button>
             </div>

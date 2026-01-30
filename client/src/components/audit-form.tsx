@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Search, Zap, Shield } from "lucide-react";
+import { Search } from "lucide-react";
 import type { AuditRequest } from "@shared/schema";
 
 interface AuditFormProps {
@@ -36,7 +36,7 @@ export default function AuditForm({ onSubmit, isLoading }: AuditFormProps) {
       {/* Form Card */}
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
-          <CardTitle className="text-xl">Start Your Free Audit</CardTitle>
+          <CardTitle className="text-xl">Start your free audit</CardTitle>
           <CardDescription className="text-base">
             Just enter your URL and conversion goal to receive instant, actionable insights.
           </CardDescription>
@@ -135,38 +135,6 @@ export default function AuditForm({ onSubmit, isLoading }: AuditFormProps) {
         </CardContent>
       </Card>
 
-      {/* Features Grid */}
-      <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-        <div className="text-center p-6 bg-white rounded-lg shadow-sm">
-          <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <Search className="h-6 w-6 text-blue-600" />
-          </div>
-          <h3 className="font-semibold text-gray-900 mb-2 text-base">Deep Analysis</h3>
-          <p className="text-gray-600 text-base">
-            Comprehensive review of headlines, CTAs, navigation, and content structure
-          </p>
-        </div>
-
-        <div className="text-center p-6 bg-white rounded-lg shadow-sm">
-          <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <Zap className="h-6 w-6 text-green-600" />
-          </div>
-          <h3 className="font-semibold text-gray-900 mb-2 text-base">Actionable Insights</h3>
-          <p className="text-gray-600 text-base">
-            Prioritized recommendations with estimated conversion lift potential
-          </p>
-        </div>
-
-        <div className="text-center p-6 bg-white rounded-lg shadow-sm">
-          <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <Shield className="h-6 w-6 text-purple-600" />
-          </div>
-          <h3 className="font-semibold text-gray-900 mb-2 text-base">Free & Instant</h3>
-          <p className="text-gray-600 text-base">
-            No signup required. Get your detailed audit report in seconds
-          </p>
-        </div>
-      </div>
     </div>
   );
 }

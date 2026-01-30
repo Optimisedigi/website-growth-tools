@@ -62,7 +62,7 @@ export default function CROAuditPage() {
       canonical.rel = 'canonical';
       document.head.appendChild(canonical);
     }
-    canonical.href = 'https://tool.optimisedigital.online/website-conversion-rate-audit';
+    canonical.href = 'https://www.optimisedigital.online/ai-growth-tools/website-conversion-rate-audit';
     
     // Add FAQ Schema
     const faqSchema = {
@@ -137,12 +137,29 @@ export default function CROAuditPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
       
+      {/* Breadcrumb */}
+      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+        <nav aria-label="Breadcrumb" className="pt-4 pb-3">
+          <ol className="flex items-center flex-wrap gap-1.5 text-sm text-slate-500">
+            <li>
+              <a href="https://www.optimisedigital.online" className="hover:text-slate-900 transition-colors">Home</a>
+            </li>
+            <li className="text-slate-400">/</li>
+            <li>
+              <a href="/ai-growth-tools" className="hover:text-slate-900 transition-colors">Free AI growth tools</a>
+            </li>
+            <li className="text-slate-400">/</li>
+            <li className="text-slate-700 font-medium">Conversion rate audit</li>
+          </ol>
+        </nav>
+      </div>
+
       <main className="flex-1 container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-12">
             <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-              Free Website Conversion Rate Audit Tool – CRO Score in Seconds
+              Free website conversion rate audit tool – CRO score in seconds
             </h1>
             <p className="text-base text-gray-600 max-w-3xl mx-auto">
               Instantly audit your landing page and get a Conversion rate optimisation score based on best practices. See how well your site is built to convert, uncover areas for improvement, and identify quick wins — before you spend a cent on ads. No sign-up needed.
@@ -173,71 +190,78 @@ export default function CROAuditPage() {
           )}
         </div>
 
-        {/* FAQ Section */}
-        <div className="mt-16 mb-8 max-w-4xl mx-auto">
-          <Card className="border border-gray-200 shadow-sm">
-            <CardHeader>
-              <CardTitle className="text-2xl font-bold text-gray-900 text-center">
-                Frequently Asked Questions
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="space-y-4">
-                <details className="group border-b border-gray-200 pb-4">
-                  <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-gray-900 hover:text-blue-600">
-                    What is a CRO audit tool?
-                    <span className="ml-2 transform group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-3 text-gray-600 leading-relaxed">
-                    A CRO audit tool analyses your website or landing page against conversion best practices. It helps identify where you're losing potential leads or sales.
-                  </p>
-                </details>
-
-                <details className="group border-b border-gray-200 pb-4">
-                  <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-gray-900 hover:text-blue-600">
-                    How do I check my website's conversion rate performance?
-                    <span className="ml-2 transform group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-3 text-gray-600 leading-relaxed">
-                    You can enter your landing page URL and conversion goal into our free audit tool. It gives you a CRO score and actionable feedback instantly.
-                  </p>
-                </details>
-
-                <details className="group border-b border-gray-200 pb-4">
-                  <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-gray-900 hover:text-blue-600">
-                    Why is conversion rate optimisation important?
-                    <span className="ml-2 transform group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-3 text-gray-600 leading-relaxed">
-                    Improving your conversion rate means getting more leads or sales from the same amount of traffic. It lowers your cost per acquisition and increases ROI.
-                  </p>
-                </details>
-
-                <details className="group border-b border-gray-200 pb-4">
-                  <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-gray-900 hover:text-blue-600">
-                    What does the CRO score mean?
-                    <span className="ml-2 transform group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-3 text-gray-600 leading-relaxed">
-                    Your score reflects how well your page follows proven CRO principles like clarity, trust signals, CTA visibility and user experience.
-                  </p>
-                </details>
-
-                <details className="group">
-                  <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-gray-900 hover:text-blue-600">
-                    Can I improve my CRO score without redesigning my whole site?
-                    <span className="ml-2 transform group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-3 text-gray-600 leading-relaxed">
-                    Yes. Most CRO improvements involve tweaks to layout, copy, CTAs or trust elements — not full redesigns. The audit gives simple, high-impact recommendations.
-                  </p>
-                </details>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </main>
-      
+
+      {/* FAQ Section */}
+      <section className="py-16 bg-slate-800">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-white text-center mb-10">
+            Frequently asked questions
+          </h2>
+          <div className="space-y-4">
+            <details className="group border-b border-slate-600 pb-4">
+              <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-white hover:text-blue-400 transition-colors">
+                What is a CRO audit tool?
+                <svg className="w-4 h-4 ml-2 flex-shrink-0 transform group-open:rotate-180 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <p className="mt-3 text-slate-300 leading-relaxed">
+                A CRO audit tool analyses your website or landing page against conversion best practices. It helps identify where you're losing potential leads or sales.
+              </p>
+            </details>
+
+            <details className="group border-b border-slate-600 pb-4">
+              <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-white hover:text-blue-400 transition-colors">
+                How do I check my website's conversion rate performance?
+                <svg className="w-4 h-4 ml-2 flex-shrink-0 transform group-open:rotate-180 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <p className="mt-3 text-slate-300 leading-relaxed">
+                You can enter your landing page URL and conversion goal into our free audit tool. It gives you a CRO score and actionable feedback instantly.
+              </p>
+            </details>
+
+            <details className="group border-b border-slate-600 pb-4">
+              <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-white hover:text-blue-400 transition-colors">
+                Why is conversion rate optimisation important?
+                <svg className="w-4 h-4 ml-2 flex-shrink-0 transform group-open:rotate-180 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <p className="mt-3 text-slate-300 leading-relaxed">
+                Improving your conversion rate means getting more leads or sales from the same amount of traffic. It lowers your cost per acquisition and increases ROI.
+              </p>
+            </details>
+
+            <details className="group border-b border-slate-600 pb-4">
+              <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-white hover:text-blue-400 transition-colors">
+                What does the CRO score mean?
+                <svg className="w-4 h-4 ml-2 flex-shrink-0 transform group-open:rotate-180 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <p className="mt-3 text-slate-300 leading-relaxed">
+                Your score reflects how well your page follows proven CRO principles like clarity, trust signals, CTA visibility and user experience.
+              </p>
+            </details>
+
+            <details className="group">
+              <summary className="flex justify-between items-center cursor-pointer text-lg font-semibold text-white hover:text-blue-400 transition-colors">
+                Can I improve my CRO score without redesigning my whole site?
+                <svg className="w-4 h-4 ml-2 flex-shrink-0 transform group-open:rotate-180 transition-transform text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <p className="mt-3 text-slate-300 leading-relaxed">
+                Yes. Most CRO improvements involve tweaks to layout, copy, CTAs or trust elements — not full redesigns. The audit gives simple, high-impact recommendations.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
